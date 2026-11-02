@@ -22,6 +22,9 @@ public class SmsEntity {
     @Column(name = "NUMERO_TELEFONE", nullable = false)
     private String NumeroTelefone;
 
+    @Column(name = "MENSAGEM")
+    private String mensagem;
+
     @Column(name = "Status_SMS", nullable = false)
     @Enumerated(EnumType.STRING)
     private SmsStatus smsStatus;
