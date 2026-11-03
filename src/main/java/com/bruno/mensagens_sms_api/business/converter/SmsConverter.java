@@ -12,7 +12,7 @@ public class SmsConverter {
 
     public SmsEntity paraEntity(SmsRequestDTO dto) {
         return SmsEntity.builder()
-                .NumeroTelefone(dto.getNumeroTelefone())
+                .numeroTelefone(dto.getNumeroTelefone())
                 .smsStatus(dto.getStatus())
                 .mensagem(dto.getMensagem())
                 .dataEnvio(dto.getDataEnvio())
@@ -21,6 +21,7 @@ public class SmsConverter {
 
     public SmsResponseDTO paraDto(SmsEntity entity) {
         return SmsResponseDTO.builder()
+                .id(entity.getId())
                 .numeroTelefone(entity.getNumeroTelefone())
                 .mensagem(entity.getMensagem())
                 .status(entity.getSmsStatus())
