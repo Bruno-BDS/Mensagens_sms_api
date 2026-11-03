@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
+@Entity
 @Table(name = "Mensagens_SMS_Status")
 public class SmsEntity {
     @Id
@@ -20,7 +20,7 @@ public class SmsEntity {
     private Long id;
 
     @Column(name = "NUMERO_TELEFONE", nullable = false)
-    private String NumeroTelefone;
+    private String numeroTelefone;
 
     @Column(name = "MENSAGEM")
     private String mensagem;
