@@ -22,6 +22,8 @@ public class SmsService {
 
         SmsEntity entity = converter.paraEntity(dto);
 
+        entity.setDataEnvio(LocalDateTime.now());
+
         SmsEntity mensagemSalva = repository.save(entity);
 
         return converter.paraDto(mensagemSalva);
@@ -46,7 +48,7 @@ public class SmsService {
         LocalDateTime dataMenos24Horas = dataAgora.minusDays(1);
 
         return repository
-                .findByStatusAndDataEnvioBetween(status, dataAgora, dataMenos24Horas)
+                .findBySmsStatusAndDataEnvioBetween(status, dataMenos24Horas, dataAgora)
                 .stream()
                 .map(converter::paraDto)
                 .toList();

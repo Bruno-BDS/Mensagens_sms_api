@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface SmsRepository extends JpaRepository<SmsEntity, Long> {
 
-    List<SmsEntity>  findByStatusAndDataEnvioBetween(SmsStatus smsStatus, LocalDateTime dataAgora, LocalDateTime dataMenos24Horas );
+    List<SmsEntity> findBySmsStatusAndDataEnvioBetween(SmsStatus smsStatus, LocalDateTime inicio, LocalDateTime fim );
 }
