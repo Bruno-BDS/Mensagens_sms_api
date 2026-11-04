@@ -30,13 +30,13 @@ public class SmsService {
 
     }
     public SmsResponseDTO atualizarStatus(Long id, SmsStatus status) {
+        if (status == null) {
+            throw new IllegalArgumentException("Status é obrigatório");
+        }
         SmsEntity mensagem = repository.findById(id)
                 .orElseThrow(() ->
                         new RuntimeException("Mensagem SMS não encontrada"));
 
-        if (status == null) {
-            throw new IllegalArgumentException("Status é obrigatório");
-        }
 
         mensagem.setSmsStatus(status);
         SmsEntity mensagemAtualizada = repository.save(mensagem);
