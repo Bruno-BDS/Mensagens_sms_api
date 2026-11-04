@@ -13,8 +13,8 @@ public class SmsConverter {
     public SmsEntity paraEntity(SmsRequestDTO dto) {
         return SmsEntity.builder()
                 .numeroTelefone(dto.getNumeroTelefone())
-                .smsStatus(dto.getStatus())
                 .mensagem(dto.getMensagem())
+                .smsStatus(dto.getStatus())
                 .dataEnvio(dto.getDataEnvio())
                 .build();
     }
