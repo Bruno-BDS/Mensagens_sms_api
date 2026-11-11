@@ -19,11 +19,8 @@ public class SmsRequestDTO {
     private String numeroTelefone;
 
     private String mensagem;
-
-    @NotNull(message = "O status é obrigatório")
-    private SmsStatus status;
-
+    
+    @NotNull(message = "Data e hora são obrigatórios")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
-    @NotBlank(message = "Data e hora são obrigatórios")
     private LocalDateTime dataEnvio;
 }
