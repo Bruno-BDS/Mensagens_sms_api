@@ -19,11 +19,10 @@ import java.util.List;
 public class SmsController {
 
     public final SmsService service;
-    public final SmsConverter smsConverter;
 
     @PostMapping
     public ResponseEntity<SmsResponseDTO> enviaMensagem(@Valid @RequestBody SmsRequestDTO dto) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.enviaMensagem(dto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.enviaMensagem(dto));
     }
 
     @PutMapping("/{id}/status")
