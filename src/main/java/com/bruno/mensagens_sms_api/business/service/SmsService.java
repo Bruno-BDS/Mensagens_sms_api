@@ -21,6 +21,12 @@ public class SmsService {
 
     public SmsResponseDTO enviaMensagem(SmsRequestDTO dto) {
 
+        if (dto == null) {
+            throw new IllegalArgumentException(
+                    "Os dados do SMS são obrigatórios"
+            );
+        }
+
         SmsEntity entity = converter.paraEntity(dto);
 
         entity.setSmsStatus(SmsStatus.ENVIADO)

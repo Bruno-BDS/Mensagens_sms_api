@@ -2,6 +2,8 @@ package com.bruno.mensagens_sms_api.infrastructure.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
@@ -14,11 +16,18 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<String> tratarArgumentoInvalido(IllegalArgumentException e) {
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<String> tratarValidacao(
+            MethodArgumentNotValidException e) {
+
+        String mensagem = e.getBindingResult()
+                .getFieldErrors()
+                .get(0)
+                .getDefaultMessage();
+
         return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(e.getMessage());
+                .badRequest()
+                .body(mensagem);
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
@@ -26,6 +35,15 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .badRequest()
                 .body("Parâmetro inválido: " + e.getMessage());
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<String> tratarJsonInvalido(
+            HttpMessageNotReadableException e) {
+
+        return ResponseEntity
+                .badRequest()
+                .body("JSON inválido ou data em formato incorreto");
     }
 
     @ExceptionHandler(Exception.class)
