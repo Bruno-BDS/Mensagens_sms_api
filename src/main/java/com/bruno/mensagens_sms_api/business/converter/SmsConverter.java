@@ -14,7 +14,6 @@ public class SmsConverter {
         return SmsEntity.builder()
                 .numeroTelefone(dto.getNumeroTelefone())
                 .mensagem(dto.getMensagem())
-                .smsStatus(dto.getStatus())
                 .dataEnvio(dto.getDataEnvio())
                 .build();
     }
